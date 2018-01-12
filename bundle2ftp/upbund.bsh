@@ -1,0 +1,3 @@
+upbund() {
+	py3 ~/sftp.py -pd $1 -chd $2
+}
