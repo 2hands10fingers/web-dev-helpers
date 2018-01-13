@@ -3,8 +3,8 @@ import argparse
 import os
 
 parser = argparse.ArgumentParser(description='Upload the bundle to the Square 205 SFTP assets folder')
-parser.add_argument('-pd','--parentdirectory', type=str, help='the number of pages you wish to scrape')
-parser.add_argument('-chd','--childdirectory', type=str, help='the number of pages you wish to scrape')
+parser.add_argument('-pd','--parentdirectory', type=str, help='the parent directory containg wordpress files')
+parser.add_argument('-chd','--childdirectory', type=str, help='designate the theme folder')
 args = parser.parse_args()
 
 # SFTP CREDENTIALS
