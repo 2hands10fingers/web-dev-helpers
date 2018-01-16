@@ -7,7 +7,8 @@ parser = argparse.ArgumentParser(description='Upload the bundle to the Square 20
 parser.add_argument('-st','--state', type=str, help='State "staging" or "live" as an argument to access the staging or live site')
 parser.add_argument('-s','--site', type=str, help='State "staging" or "live" as an argument to access the staging or live site')
 args = parser.parse_args()
-
+site_alias = args.site
+state_alias = args.state
 websites = {
 
     # "alias" : [ "host",
@@ -16,16 +17,23 @@ websites = {
     #             "parent folder/repo name",
     #             "theme folder" name ],
 
-    "example" : [   "example.sftp.wpengine.com",
-                    "exampl-username-for-live",
-                    "example-username-for-staging",
-                    "example-reponame",
-                    "example-theme-name" ]
+    "square205" : [ "square205.sftp.wpengine.com",
+                    "square205-live",
+                    "square205-staging",
+                    "square205-rebuild",
+                    "square205" ],
+
+    "podmov" : [
+        "podmov.sftp.wpengine.com ",
+        "podmov-square205",
+        "podmov-staging-square205",
+        "podcast-2018",
+        "podcast-2018"]
 }
 
 def statecheck(state):
-    stagingsite = websites[args.site][2]
-    livesite = websites[args.site][1]
+    stagingsite = websites[site_alias][2]
+    livesite = websites[site_alias][1]
 
     if state.lower() == 'live':
         return livesite
@@ -44,7 +52,7 @@ def hostcheck(alias):
         print("You've entered an incorrect website alias")
 
 def pfoldercheck(alias):
-    pfolder = websites[args.site][3]
+    pfolder = websites[site_alias][3]
     for i in websites:
         if i == alias:
             return pfolder
@@ -52,7 +60,7 @@ def pfoldercheck(alias):
             pass
 
 def chfoldercheck(alias):
-    chfolder = websites[args.site][4]
+    chfolder = websites[site_alias][4]
 
     for i in websites:
         if i == alias:
@@ -60,11 +68,12 @@ def chfoldercheck(alias):
         else:
             pass
 
+
 root = getcwd()
-host = hostcheck(args.site)
-user = statecheck(args.state)
-parentfolder = pfoldercheck(args.site)
-themefolder = chfoldercheck(args.site)
+host = hostcheck(site_alias)
+user = statecheck(state_alias)
+parentfolder = pfoldercheck(site_alias)
+themefolder = chfoldercheck(site_alias)
 cnopts = pysftp.CnOpts()
 cnopts.hostkeys = None
 bundle_path = f'{root}/{parentfolder}/wordpress/wp-content/themes/{themefolder}/assets/bundle.js'
