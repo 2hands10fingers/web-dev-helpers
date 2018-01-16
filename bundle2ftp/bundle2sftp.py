@@ -17,18 +17,11 @@ websites = {
     #             "parent folder/repo name",
     #             "theme folder" name ],
 
-    "square205" : [ "square205.sftp.wpengine.com",
-                    "square205-live",
-                    "square205-staging",
-                    "square205-rebuild",
-                    "square205" ],
-
-    "podmov" : [
-        "podmov.sftp.wpengine.com ",
-        "podmov-square205",
-        "podmov-staging-square205",
-        "podcast-2018",
-        "podcast-2018"]
+    "example" : [   "example.sftp.wpengine.com",
+                    "exampl-username-for-live",
+                    "example-username-for-staging",
+                    "example-reponame",
+                    "example-theme-name" ]
 }
 
 def statecheck(state):
